@@ -1,7 +1,7 @@
-import puppeteer from 'puppeteer';
-import sharp from 'sharp';
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import axios from 'axios';
+import sharp from 'sharp';
+import puppeteer from 'puppeteer';
 
 export type PageMargin = {
   top: number;

@@ -55,13 +55,13 @@ __export(src_exports, {
   renderUrlToPdf: () => renderUrlToPdf
 });
 module.exports = __toCommonJS(src_exports);
-var import_puppeteer = __toESM(require("puppeteer"), 1);
-var import_sharp = __toESM(require("sharp"), 1);
-var import_cheerio = __toESM(require("cheerio"), 1);
+var cheerio = __toESM(require("cheerio"), 1);
 var import_axios = __toESM(require("axios"), 1);
+var import_sharp = __toESM(require("sharp"), 1);
+var import_puppeteer = __toESM(require("puppeteer"), 1);
 function prepareImages(content) {
   return __async(this, null, function* () {
-    const parse = import_cheerio.default.load(content);
+    const parse = cheerio.load(content);
     const imgTags = parse("img");
     yield Promise.all(
       imgTags.map((index, element) => __async(this, null, function* () {

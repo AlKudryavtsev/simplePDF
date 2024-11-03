@@ -20,10 +20,10 @@ var __async = (__this, __arguments, generator) => {
 };
 
 // src/index.ts
-import puppeteer from "puppeteer";
-import sharp from "sharp";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 import axios from "axios";
+import sharp from "sharp";
+import puppeteer from "puppeteer";
 function prepareImages(content) {
   return __async(this, null, function* () {
     const parse = cheerio.load(content);
