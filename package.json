@@ -1,6 +1,6 @@
 {
   "name": "ak-simple-pdf",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,12 +19,13 @@
   },
   "scripts": {
     "build": "tsup",
-    "publish": "npm publish"
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3"
-  }
+  },
+  "keywords": ["pdf","html to pdf"]
 }

@@ -17,13 +17,6 @@ yarn add ak-simple-pdf
 ```
 
 
-
-
-```
-yarn add git+https://github.com/AlKudryavtsev/simplePDF.git
-```
-
-
 ## Types
 
 ### PageMargin
