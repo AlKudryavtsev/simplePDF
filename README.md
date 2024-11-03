@@ -1,4 +1,21 @@
+Create PDF file from html string
+
 ## Installing 
+
+
+### Package manager
+
+Using npm:
+
+```shell 
+npm install ak-simple-pdf
+```
+
+Using yarn:
+```shell 
+yarn add ak-simple-pdf
+```
+
 
 
 

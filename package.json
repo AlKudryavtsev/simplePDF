@@ -1,6 +1,6 @@
 {
-  "name": "simple-pdf",
-  "version": "1.0.2",
+  "name": "ak-simple-pdf",
+  "version": "1.0.3",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -18,7 +18,8 @@
     "sharp": "^0.33.5"
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "publish": "npm publish"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
