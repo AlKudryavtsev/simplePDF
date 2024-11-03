@@ -1,12 +1,6 @@
 ## Installing 
 
-Install need packages
 
-```
-yarn add axios cheerio puppeteer sharp
-```
-
-Install package
 
 ```
 yarn add git+https://github.com/AlKudryavtsev/simplePDF.git
