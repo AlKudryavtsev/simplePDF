@@ -1,15 +1,15 @@
 ## Installing 
 
-Установить необходимые библиотеки
+Install need packages
 
 ```
 yarn add axios cheerio puppeteer sharp
 ```
 
-Установка пакета
+Install package
 
 ```
-yarn add https://github.com/AlKudryavtsev/simplePDF.git
+yarn add git+https://github.com/AlKudryavtsev/simplePDF.git
 ```
 
 
