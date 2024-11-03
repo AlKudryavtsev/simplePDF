@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
-import * as sharp from 'sharp';
-import * as cheerio from 'cheerio';
+import sharp from 'sharp';
+import cheerio from 'cheerio';
 import axios from 'axios';
 
 export type PageMargin = {
