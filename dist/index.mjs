@@ -152,4 +152,4 @@ export {
   renderPdfFromHtml,
   renderUrlToPdf
 };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.mjs.map

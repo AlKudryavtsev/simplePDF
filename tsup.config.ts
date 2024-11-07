@@ -8,6 +8,4 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['@nestjs/core'],
-  legacyOutput: true,
-  cjsInterop: true,
 });
