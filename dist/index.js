@@ -49,6 +49,35 @@ function prepareImages(content) {
     return parse.html();
   });
 }
+function bufferPdfFromHtml(_0) {
+  return __async(this, arguments, function* (html, margin = { top: 30, right: 10, bottom: 30, left: 10 }, landscape = false, format = "a4", parseImage = false) {
+    const browser = yield puppeteer.launch({
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-dev-shm-usage",
+        "--disable-web-security",
+        "--disable-features=IsolateOrigins,site-per-process",
+        "--shm-size=10gb"
+        // this solves the issue
+      ]
+    });
+    if (parseImage) html = yield prepareImages(html);
+    const page = yield browser.newPage();
+    page.setDefaultNavigationTimeout(0);
+    yield page.setContent(html, { waitUntil: "domcontentloaded" });
+    yield page.emulateMediaType("screen");
+    const data = yield page.pdf({
+      margin,
+      landscape,
+      printBackground: true,
+      format,
+      timeout: 0
+    });
+    yield browser.close();
+    return Buffer.from(data);
+  });
+}
 function renderPdfFromHtml(_0, _1) {
   return __async(this, arguments, function* (html, src, margin = { top: 30, right: 10, bottom: 30, left: 10 }, landscape = false, format = "a4", parseImage = false) {
     const browser = yield puppeteer.launch({
@@ -112,6 +141,7 @@ function renderUrlToPdf(_0, _1) {
   });
 }
 export {
+  bufferPdfFromHtml,
   renderLandscapePdfFromHtml,
   renderPdfFromHtml,
   renderUrlToPdf

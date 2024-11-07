@@ -49,6 +49,44 @@ async function prepareImages(content: string) {
   return parse.html();
 }
 
+export async function bufferPdfFromHtml(
+  html: string,
+  margin: PageMargin = { top: 30, right: 10, bottom: 30, left: 10 },
+  landscape = false,
+  format: 'a4' | 'a5' = 'a4',
+  parseImage = false,
+) {
+  const browser = await puppeteer.launch({
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process',
+      '--shm-size=10gb', // this solves the issue
+    ],
+  });
+
+  if (parseImage) html = await prepareImages(html);
+
+  const page = await browser.newPage();
+  page.setDefaultNavigationTimeout(0);
+  await page.setContent(html, { waitUntil: 'domcontentloaded' });
+  await page.emulateMediaType('screen');
+
+  const data = await page.pdf({
+    margin,
+    landscape,
+    printBackground: true,
+    format,
+    timeout: 0,
+  });
+
+  await browser.close();
+
+  return Buffer.from(data);
+}
+
 export async function renderPdfFromHtml(
   html: string,
   src: string,
