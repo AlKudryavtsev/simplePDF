@@ -1,13 +1,12 @@
 {
   "name": "ak-simple-pdf",
-  "version": "1.0.5",
+  "version": "1.0.10",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "type": "module",
   "repository": "https://github.com/AlKudryavtsev/simplePDF.git",
   "author": "Alexey Kudryavtsev <alexey.php@gmail.com>",
   "license": "MIT",
@@ -19,7 +18,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "publish": "npm publish --access public"
+    "publish": "npm publish"
   },
   "devDependencies": {
     "prettier": "^3.3.3",

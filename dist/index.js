@@ -1,3 +1,31 @@
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -20,10 +48,19 @@ var __async = (__this, __arguments, generator) => {
 };
 
 // src/index.ts
-import * as cheerio from "cheerio";
-import axios from "axios";
-import sharp from "sharp";
-import puppeteer from "puppeteer";
+var src_exports = {};
+__export(src_exports, {
+  bufferLandscapePdfFromHtml: () => bufferLandscapePdfFromHtml,
+  bufferPdfFromHtml: () => bufferPdfFromHtml,
+  renderLandscapePdfFromHtml: () => renderLandscapePdfFromHtml,
+  renderPdfFromHtml: () => renderPdfFromHtml,
+  renderUrlToPdf: () => renderUrlToPdf
+});
+module.exports = __toCommonJS(src_exports);
+var cheerio = __toESM(require("cheerio"));
+var import_axios = __toESM(require("axios"));
+var import_sharp = __toESM(require("sharp"));
+var import_puppeteer = __toESM(require("puppeteer"));
 function prepareImages(content) {
   return __async(this, null, function* () {
     const parse = cheerio.load(content);
@@ -34,11 +71,11 @@ function prepareImages(content) {
         const imgUrl = imgElement.attr("src");
         if (imgUrl) {
           try {
-            const response = yield axios.get(imgUrl, {
+            const response = yield import_axios.default.get(imgUrl, {
               responseType: "arraybuffer"
             });
-            const resizedImageBuffer = yield sharp(response.data).resize({ width: 600, height: 600, fit: "inside" }).jpeg({ quality: 70 }).toBuffer();
-            const base64Image = `data:image/${sharp(response.data).metadata().format};base64,${resizedImageBuffer.toString("base64")}`;
+            const resizedImageBuffer = yield (0, import_sharp.default)(response.data).resize({ width: 600, height: 600, fit: "inside" }).jpeg({ quality: 70 }).toBuffer();
+            const base64Image = `data:image/${(0, import_sharp.default)(response.data).metadata().format};base64,${resizedImageBuffer.toString("base64")}`;
             imgElement.attr("src", base64Image);
           } catch (error) {
             console.error(`Error processing image ${imgUrl}: ${error}`);
@@ -51,7 +88,7 @@ function prepareImages(content) {
 }
 function bufferPdfFromHtml(_0) {
   return __async(this, arguments, function* (html, margin = { top: 30, right: 10, bottom: 30, left: 10 }, landscape = false, format = "a4", parseImage = false) {
-    const browser = yield puppeteer.launch({
+    const browser = yield import_puppeteer.default.launch({
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -78,9 +115,14 @@ function bufferPdfFromHtml(_0) {
     return Buffer.from(data);
   });
 }
+function bufferLandscapePdfFromHtml(_0) {
+  return __async(this, arguments, function* (html, margin = { top: 30, right: 10, bottom: 30, left: 10 }, format = "a4", parseImage = false) {
+    return bufferPdfFromHtml(html, margin, true, format, parseImage);
+  });
+}
 function renderPdfFromHtml(_0, _1) {
   return __async(this, arguments, function* (html, src, margin = { top: 30, right: 10, bottom: 30, left: 10 }, landscape = false, format = "a4", parseImage = false) {
-    const browser = yield puppeteer.launch({
+    const browser = yield import_puppeteer.default.launch({
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -114,7 +156,7 @@ function renderLandscapePdfFromHtml(_0, _1) {
 }
 function renderUrlToPdf(_0, _1) {
   return __async(this, arguments, function* (url, src, margin = { top: 30, right: 10, bottom: 30, left: 10 }, landscape = false, format = "a4") {
-    const browser = yield puppeteer.launch({
+    const browser = yield import_puppeteer.default.launch({
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -140,10 +182,12 @@ function renderUrlToPdf(_0, _1) {
     yield browser.close();
   });
 }
-export {
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  bufferLandscapePdfFromHtml,
   bufferPdfFromHtml,
   renderLandscapePdfFromHtml,
   renderPdfFromHtml,
   renderUrlToPdf
-};
+});
 //# sourceMappingURL=index.js.map

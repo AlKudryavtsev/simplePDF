@@ -87,6 +87,15 @@ export async function bufferPdfFromHtml(
   return Buffer.from(data);
 }
 
+export async function bufferLandscapePdfFromHtml(
+  html: string,
+  margin: PageMargin = { top: 30, right: 10, bottom: 30, left: 10 },
+  format: 'a4' | 'a5' = 'a4',
+  parseImage = false,
+) {
+  return bufferPdfFromHtml(html, margin, true, format, parseImage);
+}
+
 export async function renderPdfFromHtml(
   html: string,
   src: string,

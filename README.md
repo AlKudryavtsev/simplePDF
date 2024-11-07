@@ -46,9 +46,37 @@ Render html string to pdf file
 | parseImage | boolean    | false | false                                                | Parse and resize image  |
 
 
+### bufferPdfFromHtml
+
+Returns the PDF file buffer
+
+
+| filed      | type       | main  | default                                              | description             |
+|------------|------------|-------|------------------------------------------------------|-------------------------|
+| html       | string     | true  | none                                                 | html string             |
+| margin     | PageMargin | false | ``` { top: 30, right: 10, bottom: 30, left: 10 } ``` | margin size             |
+| landscape  | boolean    | false | false                                                | page orientation        |
+| format     | string     | false | 'a4'                                                 | page size: 'a4' or 'a5' |
+| parseImage | boolean    | false | false                                                | Parse and resize image  |
+
+
+
 ### renderLandscapePdfFromHtml
 
 Render html string to pdf file with landscape orientation
+
+| filed      | type       | main  | default                                              | description             |
+|------------|------------|-------|------------------------------------------------------|-------------------------|
+| html       | string     | true  | none                                                 | html string             |
+| src        | string     | true  | none                                                 | destination file        |
+| margin     | PageMargin | false | ``` { top: 30, right: 10, bottom: 30, left: 10 } ``` | margin size             |
+| format     | string     | false | 'a4'                                                 | page size: 'a4' or 'a5' |
+| parseImage | boolean    | false | false                                                | Parse and resize image  |
+
+
+### bufferLandscapePdfFromHtml
+
+Returns the PDF file buffer
 
 | filed      | type       | main  | default                                              | description             |
 |------------|------------|-------|------------------------------------------------------|-------------------------|
